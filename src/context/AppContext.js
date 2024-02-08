@@ -20,20 +20,20 @@ export const AppReducer = (state, action) => {
                 ...state,
             };
 
-            case 'RED_QUANTITY':
-                state.expenses.map((expense)=>{
-                    if(expense.name === action.payload.name) {
-                        expense.quantity = expense.quantity - action.payload.quantity;
-                    }
-                    expense.quantity = expense.quantity < 0 ? 0: expense.quantity;
-                    new_expenses.push(expense);
-                    return true;
-                })
-                state.expenses = new_expenses;
-                action.type = "DONE";
-                return {
-                    ...state,
-                };
+        case 'RED_QUANTITY':
+            state.expenses.map((expense)=>{
+                if(expense.name === action.payload.name) {
+                    expense.quantity = expense.quantity - action.payload.quantity;
+                }
+                expense.quantity = expense.quantity < 0 ? 0: expense.quantity;
+                new_expenses.push(expense);
+                return true;
+            })
+            state.expenses = new_expenses;
+            action.type = "DONE";
+            return {
+                ...state,
+            };
         case 'DELETE_ITEM':
             state.expenses.map((expense)=>{
                 if(expense.name === action.payload.name) {
@@ -47,7 +47,7 @@ export const AppReducer = (state, action) => {
             return {
                 ...state,
             };
-    case 'CHG_LOCATION':
+        case 'CHG_LOCATION':
             action.type = "DONE";
             state.Location = action.payload;
             return {
@@ -56,7 +56,7 @@ export const AppReducer = (state, action) => {
 
         default:
             return state;
-    }
+        }
 };
 
 // 1. Sets the initial state when the app loads
